@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.db.models.deletion import SET_NULL
 
 # Create your models here.
 
@@ -23,3 +25,10 @@ class Respondent(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Profile(AbstractUser):
+    point = models.IntegerField(default=0)
+    certification = models.BooleanField(default=False)
+    city = models.ForeignKey(City, on_delete=SET_NULL, null=True)
+    respondent = models.ForeignKey(Respondent, on_delete=SET_NULL, null=True)
