@@ -32,3 +32,6 @@ class Profile(AbstractUser):
     certification = models.BooleanField(default=False)
     city = models.ForeignKey(City, on_delete=SET_NULL, null=True)
     respondent = models.ForeignKey(Respondent, on_delete=SET_NULL, null=True)
+
+    def __str__(self):
+        return self.name
